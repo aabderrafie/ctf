@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ user.username }}</h2>
+<p>Balance: ${{ user.balance }}</p>
+
+<h3>Pending Transfers</h3>
+<ul>
+  {% for t in transfers %}
+    <li>
+      From user {{ t.sender_id }}: ${{ t.amount }}
+      <a href="/transfer/{{ t.id }}/accept">[Accept]</a>
+      <a href="/transfer/{{ t.id }}/refuse">[Refuse]</a>
+    </li>
+  {% else %}
+    <li>No pending transfers</li>
+  {% endfor %}
+</ul>
+{% endblock %}
