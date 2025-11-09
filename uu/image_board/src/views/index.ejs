@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imageboard</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0078d7;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input[type="file"] {
+      border: none;
+    }
+
+    button {
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      border-top: 1px solid #e5e5e5;
+      padding: 1rem 0;
+    }
+
+    li:first-child {
+      border-top: none;
+    }
+
+    .post-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #0078d7;
+    }
+
+    .post-content {
+      margin-top: 0.5rem;
+      white-space: pre-wrap;
+    }
+
+    .post-image {
+      margin-top: 0.8rem;
+    }
+
+    .post-image img {
+      max-width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Imageboard</h1>
+  </header>
+
+  <main>
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <input type="text" name="title" placeholder="Post title..." required />
+      <textarea name="content" placeholder="Write something interesting..." rows="4" required></textarea>
+      <input type="file" name="image" accept="image/*" />
+      <button type="submit">Post</button>
+    </form>
+
+    <ul>
+      <% posts.forEach(post => { %>
+        <li>
+          <div class="post-title"><%= post.title %></div>
+          <div class="post-content"><%= post.content %></div>
+          <% if (post.image_path) { %>
+            <div class="post-image">
+              <img src="<%= post.image_path %>" alt="Post image">
+            </div>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>
