@@ -1,0 +1,48 @@
+version: '3'
+services:
+  logix:
+    build: logix
+    ports:
+      - "9191:80"
+    environment:
+      FLAG : "DEEPSEC{jugg1ing_typ3s_1ik3_4_c10wn}"
+  # imageboard:
+  #   build: image_board
+  #   ports:
+  #     - "8181:3000"
+  #   depends_on:
+  #     - imageboarddb
+  #   environment:
+  #     - PGHOST=imageboarddb
+  #     - PGUSER=postgres
+  #     - PGPASSWORD=CxHs6g3QZv99
+  #     - PGDATABASE=imageboard
+  #     - PGPORT=5432
+  #     - ADMIN_USER=jantofix
+  #     - ADMIN_PASS=QegFp8CHesu4
+  # imageboarddb:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: CxHs6g3QZv99
+  #     POSTGRES_DB: imageboard
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
+  #     - ./image_board/init.sql:/docker-entrypoint-initdb.d/init.sql
+  # bot:
+  #   build: image_board/bot
+  #   restart : always
+  #   depends_on:
+  #     - imageboarddb
+  #     - imageboard
+  banka_dl3awd: 
+    build: banka_dl3awd
+    ports:
+      - "7171:5000"
+    volumes:
+      - .:/banka_dl3awd/app
+    environment:
+      FLAG: "DEEPSEC{W4N7_70_M4N463_Y0Ur_4CC0UN7_Fr0M_Y0Ur_C311_PH0N3_84NQU3_P0PU141r3_0FF3r5_Y0U_4N_1NN0V471V3_501U710N_P0CK37_84NK_4_M08113_84NK1N6_501U710N_7H47_W111_8r1N6_Y0Ur_84NK_3V3N_C1053r_70_Y0U}"
+
+volumes:
+  db_data:
